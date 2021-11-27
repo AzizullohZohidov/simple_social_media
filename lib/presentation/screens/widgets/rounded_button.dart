@@ -9,6 +9,7 @@ class RoundedButton extends StatelessWidget {
   final bool isBold;
   final double radius;
   final Color buttonColor;
+  final Color splashColor;
   final bool isEnabled;
   final Function callback;
   const RoundedButton({
@@ -20,29 +21,39 @@ class RoundedButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.isBold = false,
     this.radius = 45,
-    this.buttonColor = Colors.deepOrange,
+    this.buttonColor = Colors.red,
+    this.splashColor = Colors.redAccent,
     required this.isEnabled,
     required this.callback,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: isEnabled ? () => callback : null,
-      child: Container(
-        height: height,
+    return Material(
+      color: Colors.transparent,
+      child: Ink(
         width: width,
+        height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius),
           color: buttonColor,
+          borderRadius: BorderRadius.circular(radius),
         ),
-        child: Text(
-          buttonText,
-          style: TextStyle(
-            fontSize: textSize,
-            color: textColor,
-            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+        child: InkWell(
+          onTap: isEnabled ? () => callback : null,
+          customBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius),
           ),
+          child: Center(
+            child: Text(
+              buttonText,
+              style: TextStyle(
+                fontSize: textSize,
+                color: textColor,
+                fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ),
+          splashColor: splashColor,
         ),
       ),
     );

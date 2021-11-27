@@ -11,7 +11,7 @@ class TextFieldCustom extends StatelessWidget {
   final double rightMargin;
   final double topMargin;
   final double bottomMargin;
-  final String errorText;
+  final String? errorText;
   const TextFieldCustom({
     Key? key,
     required this.controller,
@@ -24,7 +24,7 @@ class TextFieldCustom extends StatelessWidget {
     this.rightMargin = 0,
     this.topMargin = 0,
     this.bottomMargin = 0,
-    this.errorText = '',
+    this.errorText = null,
   }) : super(key: key);
 
   @override
@@ -43,6 +43,11 @@ class TextFieldCustom extends StatelessWidget {
           fillColor: fieldColor,
           focusColor: fieldColor,
           hoverColor: fieldColor,
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: fieldColor,
+            ),
+          ),
           label: Text(
             label,
             style: TextStyle(
