@@ -35,7 +35,7 @@ class RoundedButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: buttonColor,
+          color: isEnabled ? buttonColor : Colors.grey.shade300,
           borderRadius: BorderRadius.circular(radius),
         ),
         child: InkWell(
@@ -48,7 +48,7 @@ class RoundedButton extends StatelessWidget {
               buttonText,
               style: TextStyle(
                 fontSize: textSize,
-                color: textColor,
+                color: isEnabled ? textColor : Colors.grey,
                 fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
               ),
             ),

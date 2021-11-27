@@ -20,6 +20,7 @@ class DescriptionText extends StatelessWidget {
       width: fieldWidth,
       child: Text(
         text,
+        textAlign: TextAlign.center,
         style: TextStyle(
           fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
           color: textColor,
