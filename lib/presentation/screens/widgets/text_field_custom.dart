@@ -7,6 +7,7 @@ class TextFieldCustom extends StatelessWidget {
   final double labelSize;
   final bool isObscured;
   final Color fieldColor;
+  final bool isCapitalized;
   final double leftMargin;
   final double rightMargin;
   final double topMargin;
@@ -20,6 +21,7 @@ class TextFieldCustom extends StatelessWidget {
     this.labelSize = 14,
     this.isObscured = false,
     this.fieldColor = Colors.grey,
+    this.isCapitalized = true,
     this.leftMargin = 0,
     this.rightMargin = 0,
     this.topMargin = 0,
@@ -38,6 +40,9 @@ class TextFieldCustom extends StatelessWidget {
         bottom: bottomMargin,
       ),
       child: TextField(
+        textCapitalization: isCapitalized
+            ? TextCapitalization.sentences
+            : TextCapitalization.none,
         controller: controller,
         decoration: InputDecoration(
           fillColor: fieldColor,

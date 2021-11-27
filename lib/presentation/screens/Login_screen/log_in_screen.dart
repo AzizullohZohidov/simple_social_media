@@ -36,12 +36,14 @@ class LogInScreen extends StatelessWidget {
                     controller: _emailController,
                     fieldLength: double.infinity,
                     label: 'Email',
+                    isCapitalized: false,
                   ),
                   const SizedBox(height: 25),
                   TextFieldCustom(
                     controller: _passwordController,
                     fieldLength: double.infinity,
                     label: 'Password',
+                    isObscured: true,
                   ),
                   const SizedBox(height: 50),
                   RoundedButton(

@@ -9,6 +9,7 @@ class SignUpScreen extends StatelessWidget {
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -39,6 +40,7 @@ class SignUpScreen extends StatelessWidget {
                     controller: _emailController,
                     fieldLength: double.infinity,
                     label: 'Email',
+                    isCapitalized: false,
                   ),
                   const SizedBox(height: 25),
                   _buildNameFields(
@@ -48,6 +50,16 @@ class SignUpScreen extends StatelessWidget {
                     controller: _passwordController,
                     fieldLength: double.infinity,
                     label: 'Password',
+                    isCapitalized: false,
+                    isObscured: true,
+                  ),
+                  const SizedBox(height: 25),
+                  TextFieldCustom(
+                    controller: _confirmPasswordController,
+                    fieldLength: double.infinity,
+                    label: 'Confirm Password',
+                    isCapitalized: false,
+                    isObscured: true,
                   ),
                   const SizedBox(height: 25),
                   DescriptionText(
