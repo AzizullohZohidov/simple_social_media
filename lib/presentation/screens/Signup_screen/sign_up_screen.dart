@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:simple_social_media/presentation/screens/widgets/description_text.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/text_field_custom.dart';
 import '../widgets/title_text.dart';
 
-class LogInScreen extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   final _emailController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
   final _passwordController = TextEditingController();
-  LogInScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class LogInScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 75),
                   const TitleText(
-                    text: 'Log in',
+                    text: 'Sign up',
                     isBold: true,
                     textColor: Colors.black,
                     textSize: 30,
@@ -38,15 +41,27 @@ class LogInScreen extends StatelessWidget {
                     label: 'Email',
                   ),
                   const SizedBox(height: 25),
+                  _buildNameFields(
+                      _firstNameController, _lastNameController, phoneSize),
+                  const SizedBox(height: 25),
                   TextFieldCustom(
                     controller: _passwordController,
                     fieldLength: double.infinity,
                     label: 'Password',
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 25),
+                  DescriptionText(
+                    text:
+                        'By signing up you agree to our Terms of Use and Privacy Policy',
+                    isBold: false,
+                    textColor: Colors.grey,
+                    textSize: 14,
+                    fieldWidth: phoneSize.width * 0.8,
+                  ),
+                  const SizedBox(height: 25),
                   RoundedButton(
                     height: phoneSize.height * 0.075,
-                    buttonText: 'Log in',
+                    buttonText: 'Sign up',
                     isEnabled: true,
                     callback: () {},
                   ),
@@ -55,14 +70,14 @@ class LogInScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Do not have an account?',
+                        'Already have an account?',
                         style: TextStyle(
                           color: Colors.grey,
                         ),
                       ),
                       SizedBox(width: 15),
                       Text(
-                        'Sign up',
+                        'Log in',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -76,6 +91,30 @@ class LogInScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildNameFields(
+    TextEditingController _firstNameController,
+    TextEditingController _lastNameController,
+    final Size phoneSize,
+  ) {
+    return Row(
+      children: [
+        TextFieldCustom(
+          controller: _firstNameController,
+          fieldLength: phoneSize.width * 0.35,
+          label: 'First Name',
+        ),
+        const Expanded(
+          child: SizedBox(),
+        ),
+        TextFieldCustom(
+          controller: _lastNameController,
+          fieldLength: phoneSize.width * 0.35,
+          label: 'Last Name',
+        ),
+      ],
     );
   }
 }
