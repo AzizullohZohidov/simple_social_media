@@ -9,6 +9,16 @@ class AuthenticationRepository {
 
   User? get currentUser => _auth.currentUser;
 
+  Future<void> logIn({
+    required String email,
+    required String password,
+  }) async {
+    await _auth.signInWithEmailAndPassword(
+      email: email.trim().toLowerCase(),
+      password: password.trim(),
+    );
+  }
+
   Future<void> signUpAndSaveInDB({
     required String email,
     required String firstName,
