@@ -1,8 +1,8 @@
 mixin StringNonemptyValidatorMixin {
-  bool isStringNotEmpty(String str) {
+  String isStringNotEmpty(String str) {
     if (str.isEmpty) {
-      return false;
+      return 'Field is empty';
     }
-    return true;
+    return '';
   }
 }

@@ -39,7 +39,11 @@ class RoundedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
         ),
         child: InkWell(
-          onTap: isEnabled ? () => callback : null,
+          onTap: isEnabled
+              ? () {
+                  callback();
+                }
+              : null,
           customBorder: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius),
           ),

@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
+import 'package:simple_social_media/data/repositories/authentication_repository.dart';
 import 'package:simple_social_media/presentation/screens/Login_screen/log_in_screen.dart';
 import 'package:simple_social_media/presentation/screens/Signup_screen/sign_up_screen.dart';
 
@@ -31,7 +34,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: SignUpScreen(),
+          home: BlocProvider(
+            create: (context) => SignUpBloc(AuthenticationRepository()),
+            child: SignUpScreen(),
+          ),
           //home: LogInScreen(),
         );
       },
