@@ -26,7 +26,7 @@ class TextFieldCustom extends StatelessWidget {
     this.rightMargin = 0,
     this.topMargin = 0,
     this.bottomMargin = 0,
-    this.errorText = null,
+    this.errorText,
   }) : super(key: key);
 
   @override
