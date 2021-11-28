@@ -84,6 +84,10 @@ class SignUpValidationError extends SignUpState {
 
 class SignUpEmailErrorCleared extends SignUpState {}
 
+class SignUpFirstNameErrorCleared extends SignUpState {}
+
+class SignUpLastNameErrorCleared extends SignUpState {}
+
 class SignUpPasswordErrorCleared extends SignUpState {}
 
 class SignUpLoading extends SignUpState {}
