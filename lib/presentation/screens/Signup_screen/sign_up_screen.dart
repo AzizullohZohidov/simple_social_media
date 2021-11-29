@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_social_media/business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
+import 'package:simple_social_media/presentation/router/app_router.dart';
 import 'package:simple_social_media/presentation/screens/landing_screen/landing_screen.dart';
+import 'package:simple_social_media/presentation/screens/widgets/button_to_screen.dart';
 import 'package:simple_social_media/presentation/screens/widgets/description_text.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/text_field_custom.dart';
@@ -126,23 +128,10 @@ class SignUpScreen extends StatelessWidget {
                       },
                     ),
                     const Expanded(child: SizedBox()),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Already have an account?',
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                        SizedBox(width: 15),
-                        Text(
-                          'Log in',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
+                    const ButtonToScreen(
+                      toRoute: RouteConstants.logIn,
+                      description: 'Already have an account?',
+                      buttonText: 'Log in',
                     ),
                     const SizedBox(height: 50),
                   ],

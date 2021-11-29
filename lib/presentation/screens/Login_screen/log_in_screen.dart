@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_social_media/presentation/router/app_router.dart';
+import 'package:simple_social_media/presentation/screens/widgets/button_to_screen.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/text_field_custom.dart';
 import '../widgets/title_text.dart';
@@ -53,23 +55,10 @@ class LogInScreen extends StatelessWidget {
                     callback: () {},
                   ),
                   const Expanded(child: SizedBox()),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        'Do not have an account?',
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      Text(
-                        'Sign up',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                  const ButtonToScreen(
+                    toRoute: RouteConstants.signUp,
+                    description: 'Do not have an account?',
+                    buttonText: 'Sign up',
                   ),
                   const SizedBox(height: 50),
                 ],
