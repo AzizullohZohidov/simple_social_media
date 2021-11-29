@@ -4,7 +4,7 @@ import 'package:simple_social_media/data/models/user_model.dart';
 
 class UserRepository {
   late FirebaseAuth _auth;
-  AuthenticationRepository() {
+  UserRepository() {
     _auth = FirebaseAuth.instance;
   }
 
