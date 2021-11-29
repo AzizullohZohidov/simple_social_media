@@ -57,7 +57,7 @@ class AuthenticationRepository {
       'email': email.trim(),
       'firstName': firstName,
       'lastName': lastName,
-      'createdAt': Timestamp.now(),
+      'createdAt': DateTime.now().toString(),
     });
   }
 }

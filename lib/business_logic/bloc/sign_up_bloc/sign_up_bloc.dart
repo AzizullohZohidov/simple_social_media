@@ -19,7 +19,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         ConfirmPasswordValidatorMixin,
         StringNonemptyValidatorMixin,
         PassedParametersValidatorMixin {
-  SignUpBloc(this._authRepo) : super(SignUpInitial()) {
+  SignUpBloc({required this.authRepo}) : super(SignUpInitial()) {
     on<SignUpEmailChanged>(_onEmailChanged);
     on<SignUpFirstNameChanged>(_onFirstNameChanged);
     on<SignUpLastNameChanged>(_onLastChanged);
@@ -28,7 +28,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     on<SignUpSubmitted>(_onSignUpSubmitted);
   }
 
-  final AuthenticationRepository _authRepo;
+  final AuthenticationRepository authRepo;
 
   void _onEmailChanged(
     SignUpEmailChanged event,
@@ -94,7 +94,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     }
     //Since no validation error occured we proceed to signing up the user
     try {
-      await _authRepo.signUpAndSaveInDB(
+      await authRepo.signUpAndSaveInDB(
         email: event.email,
         firstName: event.firstName,
         lastName: event.lastName,
