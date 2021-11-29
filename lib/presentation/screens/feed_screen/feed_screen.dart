@@ -1,10 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class FeedScreen extends StatelessWidget {
-  double outsideMargin = 5.0;
-
   List<String> photoUrls = [
     'https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_1280.png',
     'https://cdn.pixabay.com/photo/2020/07/03/16/51/mountains-5367026_1280.jpg',
@@ -25,20 +25,7 @@ class FeedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Recently Added',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.deepOrange,
-          ),
-        ),
-        backgroundColor: Colors.white10,
-        systemOverlayStyle:
-            SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
-        elevation: 0,
-      ),
+      appBar: _buildBlurredAppBar(context),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,18 +45,18 @@ class FeedScreen extends StatelessWidget {
           return Future.value();
         },
         child: StaggeredGridView.countBuilder(
-          padding: EdgeInsets.only(
-            top: 10,
-            left: outsideMargin,
-            right: outsideMargin,
+          padding: const EdgeInsets.only(
+            top: 24,
+            left: 24,
+            right: 24,
           ),
           crossAxisCount: 4,
           itemCount: photoUrls.length,
           itemBuilder: (BuildContext context, int index) =>
               _staggeredTile(photoUrls[index]),
           staggeredTileBuilder: (int index) => const StaggeredTile.fit(2),
-          mainAxisSpacing: 10.0,
-          crossAxisSpacing: 10.0,
+          mainAxisSpacing: 12.0,
+          crossAxisSpacing: 12.0,
         ),
       ),
     );
@@ -82,6 +69,68 @@ class FeedScreen extends StatelessWidget {
         photoUrl,
         fit: BoxFit.cover,
       ),
+    );
+  }
+
+  PreferredSize _buildRegularAppBar() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(60),
+      child: AppBar(
+        title: Row(
+          children: const [
+            SizedBox(width: 8),
+            Text(
+              'Recently Added',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepOrange,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.white10,
+        systemOverlayStyle:
+            SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
+        elevation: 0,
+      ),
+    );
+  }
+
+  PreferredSize _buildBlurredAppBar(BuildContext context) {
+    return PreferredSize(
+      child: Container(
+        child: ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 5,
+              sigmaY: 50,
+              tileMode: TileMode.repeated,
+            ),
+            child: Container(
+              //   width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).padding.top + 100,
+              //Colors.transparent gives only blurring while Colors.white70 matte looking effect
+              color: Colors.white70,
+              child: SafeArea(
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(horizontal: 28),
+                  child: const Text(
+                    'Recently Added',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.deepOrange,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      preferredSize: Size(MediaQuery.of(context).size.width, 80),
     );
   }
 }

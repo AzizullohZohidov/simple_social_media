@@ -56,7 +56,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                   const Expanded(child: SizedBox()),
                   const ButtonToScreen(
-                    toRoute: RouteConstants.signUp,
+                    toRoute: RouteConstants.signUpScreen,
                     description: 'Do not have an account?',
                     buttonText: 'Sign up',
                   ),

@@ -129,7 +129,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     const Expanded(child: SizedBox()),
                     const ButtonToScreen(
-                      toRoute: RouteConstants.logIn,
+                      toRoute: RouteConstants.logInSreen,
                       description: 'Already have an account?',
                       buttonText: 'Log in',
                     ),

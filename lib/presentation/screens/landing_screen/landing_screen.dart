@@ -28,7 +28,6 @@ class _LandingScreenState extends State<LandingScreen> {
         backgroundColor: Colors.white,
         selectedItemColor: Colors.deepOrange,
         unselectedItemColor: Colors.grey,
-        showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -39,6 +38,17 @@ class _LandingScreenState extends State<LandingScreen> {
             label: 'Profile',
           ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(18),
+          shape: const CircleBorder(),
+          primary: Colors.deepOrange,
+          elevation: 3,
+        ),
+        child: const Icon(Icons.add),
       ),
       body: screens[pageIndex],
     );
