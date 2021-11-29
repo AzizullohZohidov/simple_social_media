@@ -6,6 +6,7 @@ import 'package:simple_social_media/data/repositories/authentication_repository.
 import 'package:simple_social_media/presentation/router/app_router.dart';
 import 'package:simple_social_media/presentation/screens/Login_screen/log_in_screen.dart';
 import 'package:simple_social_media/presentation/screens/Signup_screen/sign_up_screen.dart';
+import 'package:simple_social_media/presentation/screens/landing_screen/landing_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +38,8 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: SignUpScreen(),
+            home: LandingScreen(),
+            //home: SignUpScreen(),
             onGenerateRoute: AppRouter.onGenerateRoute,
           ),
         );
