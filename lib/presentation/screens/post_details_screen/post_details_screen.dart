@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_social_media/presentation/screens/post_details_screen/components/publisher_photo_name.dart';
+import 'package:simple_social_media/presentation/screens/widgets/avatar_picture.dart';
 import 'components/post_description.dart';
 import 'components/post_image_return_button.dart';
 import 'components/separator.dart';
@@ -32,6 +34,12 @@ class PostDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const PublisherPhotoName(
+                      publisherImageUrl:
+                          'https://cdn.pixabay.com/photo/2016/09/29/13/08/planet-1702788_1280.jpg',
+                      publisherFirstName: 'Donald',
+                      publisherLastName: 'Knuth',
+                    ),
                     TitleText(
                       text: title,
                       fontWeight: FontWeight.w500,
