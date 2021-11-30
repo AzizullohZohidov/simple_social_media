@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:simple_social_media/presentation/router/app_router.dart';
 import 'package:simple_social_media/presentation/screens/feed_screen/feed_screen.dart';
 import 'package:simple_social_media/presentation/screens/profile_screen/profile_screen.dart';
 
@@ -41,7 +42,8 @@ class _LandingScreenState extends State<LandingScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: ElevatedButton(
-        onPressed: () {},
+        onPressed: () =>
+            Navigator.of(context).pushNamed(RouteConstants.addPinScreen),
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(18),
           shape: const CircleBorder(),

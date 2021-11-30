@@ -13,6 +13,8 @@ class TextFieldCustom extends StatelessWidget {
   final double topMargin;
   final double bottomMargin;
   final String? errorText;
+  final Color cursorColor;
+  final bool isMultiline;
   const TextFieldCustom({
     Key? key,
     required this.controller,
@@ -27,6 +29,8 @@ class TextFieldCustom extends StatelessWidget {
     this.topMargin = 0,
     this.bottomMargin = 0,
     this.errorText,
+    this.cursorColor = Colors.deepOrange,
+    this.isMultiline = false,
   }) : super(key: key);
 
   @override
@@ -43,6 +47,10 @@ class TextFieldCustom extends StatelessWidget {
         textCapitalization: isCapitalized
             ? TextCapitalization.sentences
             : TextCapitalization.none,
+        keyboardType:
+            isMultiline ? TextInputType.multiline : TextInputType.text,
+        maxLength: isMultiline ? 2000 : null,
+        maxLines: isMultiline ? null : 1,
         controller: controller,
         decoration: InputDecoration(
           fillColor: fieldColor,
@@ -62,7 +70,7 @@ class TextFieldCustom extends StatelessWidget {
           ),
           errorText: errorText,
         ),
-        cursorColor: fieldColor,
+        cursorColor: cursorColor,
         obscureText: isObscured,
       ),
     );
