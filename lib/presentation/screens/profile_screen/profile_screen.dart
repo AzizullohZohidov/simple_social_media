@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_social_media/business_logic/bloc/profile_bloc/profile_bloc.dart';
+import 'package:simple_social_media/presentation/screens/widgets/avatar_picture.dart';
 
 class ProfileScreen extends StatefulWidget {
   late ProfileBloc profileBloc;
+  late Size phoneSize;
   ProfileScreen({Key? key}) : super(key: key);
 
   @override
@@ -21,8 +23,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    widget.phoneSize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: _buildAppBar(),
+      //appBar: _buildAppBar(),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
           print(state);
@@ -30,14 +33,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: state is ProfileInitialization
                 ? Column(
                     children: [
-                      Text('Your id: ${state.currentUser.id}'),
-                      Text('Your email: ${state.currentUser.email}'),
-                      Text('Your firstName: ${state.currentUser.firstName}'),
-                      Text('Your lastName: ${state.currentUser.lastName}'),
-                      Text('Your createdAt: ${state.currentUser.createdAt}'),
+                      Container(
+                        width: double.infinity,
+                        height: 350,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.redAccent.shade200,
+                              Colors.orange.shade300,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                        child: SafeArea(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AvatarPicture(
+                                avatarImagePath:
+                                    'https://cdn.pixabay.com/photo/2020/06/28/04/07/cat-5347790_1280.jpg',
+                                radius: widget.phoneSize.width * 0.2,
+                              ),
+                              _buildName(state),
+                              _buildProfession(),
+                              _buildEmail(state),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   )
-                : Text('Hmm data seems to be missing'),
+                : const Text('Hmm data seems to be missing'),
           );
         },
       ),
@@ -59,6 +86,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
       systemOverlayStyle:
           SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
       elevation: 0,
+    );
+  }
+
+  Widget _buildName(ProfileInitialization state) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 14.0),
+      child: Text(
+        state.currentUser.firstName + ' ' + state.currentUser.lastName,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfession() {
+    return const Padding(
+      padding: EdgeInsets.only(top: 8.0),
+      child: Text(
+        'Photographer',
+        style: TextStyle(
+          fontSize: 16,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEmail(ProfileInitialization state) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.email_outlined,
+            color: Colors.white,
+          ),
+          const SizedBox(width: 10),
+          Text(
+            state.currentUser.email,
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
