@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_social_media/presentation/router/app_router.dart';
-import 'package:simple_social_media/presentation/screens/widgets/button_to_screen.dart';
+import '../../router/app_router.dart';
+import '../widgets/button_to_screen.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/text_field_custom.dart';
 import '../widgets/title_text.dart';
@@ -29,7 +29,7 @@ class LogInScreen extends StatelessWidget {
                   const SizedBox(height: 75),
                   const TitleText(
                     text: 'Log in',
-                    isBold: true,
+                    fontWeight: FontWeight.bold,
                     textColor: Colors.black,
                     textSize: 30,
                   ),

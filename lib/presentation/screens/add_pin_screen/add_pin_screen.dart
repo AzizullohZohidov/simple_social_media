@@ -1,8 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:simple_social_media/presentation/screens/widgets/rounded_button.dart';
-import 'package:simple_social_media/presentation/screens/widgets/text_field_custom.dart';
+import '../widgets/rounded_button.dart';
+import '../widgets/text_field_custom.dart';
+import '../widgets/title_text.dart';
 
 class AddPinScreen extends StatelessWidget {
   AddPinScreen({Key? key}) : super(key: key);
@@ -12,30 +13,7 @@ class AddPinScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var phoneSize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: Navigator.of(context).canPop()
-            ? IconButton(
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.black,
-                ),
-                onPressed: () => Navigator.of(context).pop(),
-              )
-            : null,
-        title: const Text(
-          'Create Post',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.deepOrange,
-          ),
-        ),
-        backgroundColor: Colors.white10,
-        systemOverlayStyle:
-            SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
-        elevation: 0,
-      ),
+      appBar: _buildAppBar(context),
       body: Align(
         alignment: Alignment.topCenter,
         child: SizedBox(
@@ -78,6 +56,31 @@ class AddPinScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      centerTitle: true,
+      leading: Navigator.of(context).canPop()
+          ? IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          : null,
+      title: const TitleText(
+        text: 'Create Post',
+        fontWeight: FontWeight.bold,
+        textColor: Colors.deepOrange,
+        textSize: 24,
+      ),
+      backgroundColor: Colors.white10,
+      systemOverlayStyle:
+          SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
+      elevation: 0,
     );
   }
 

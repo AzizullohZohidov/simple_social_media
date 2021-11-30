@@ -2,12 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:simple_social_media/core/validators/confirm_password_validator_mixin.dart';
-import 'package:simple_social_media/core/validators/email_validator_mixin.dart';
-import 'package:simple_social_media/core/validators/passed_parameters_validator_mixin.dart';
-import 'package:simple_social_media/core/validators/password_validator_mixin.dart';
-import 'package:simple_social_media/core/validators/string_nonempty_validator_mixin.dart';
-import 'package:simple_social_media/data/repositories/authentication_repository.dart';
+import '../../../core/validators/confirm_password_validator_mixin.dart';
+import '../../../core/validators/email_validator_mixin.dart';
+import '../../../core/validators/passed_parameters_validator_mixin.dart';
+import '../../../core/validators/password_validator_mixin.dart';
+import '../../../core/validators/string_nonempty_validator_mixin.dart';
+import '../../../data/repositories/authentication_repository.dart';
 
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';

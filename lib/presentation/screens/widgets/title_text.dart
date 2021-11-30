@@ -2,25 +2,35 @@ import 'package:flutter/material.dart';
 
 class TitleText extends StatelessWidget {
   final String text;
-  final bool isBold;
+  final FontWeight fontWeight;
   final Color textColor;
   final double textSize;
+  final double verticalPadding;
+  final double horizontalPadding;
   const TitleText({
     Key? key,
     required this.text,
-    required this.isBold,
+    required this.fontWeight,
     required this.textColor,
     required this.textSize,
+    this.verticalPadding = 0,
+    this.horizontalPadding = 0,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-        color: textColor,
-        fontSize: textSize,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: verticalPadding,
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontWeight: fontWeight,
+          color: textColor,
+          fontSize: textSize,
+        ),
       ),
     );
   }

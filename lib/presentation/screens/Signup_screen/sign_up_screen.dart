@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simple_social_media/business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
-import 'package:simple_social_media/presentation/router/app_router.dart';
-import 'package:simple_social_media/presentation/screens/landing_screen/landing_screen.dart';
-import 'package:simple_social_media/presentation/screens/widgets/button_to_screen.dart';
-import 'package:simple_social_media/presentation/screens/widgets/description_text.dart';
+import '../../../business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
+import '../../router/app_router.dart';
+import '../landing_screen/landing_screen.dart';
+import '../widgets/button_to_screen.dart';
+import '../widgets/description_text.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/text_field_custom.dart';
 import '../widgets/title_text.dart';
@@ -48,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: 75),
                     const TitleText(
                       text: 'Sign up',
-                      isBold: true,
+                      fontWeight: FontWeight.bold,
                       textColor: Colors.black,
                       textSize: 30,
                     ),

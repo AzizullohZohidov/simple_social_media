@@ -2,15 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simple_social_media/business_logic/bloc/profile_bloc/profile_bloc.dart';
-import 'package:simple_social_media/business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
-import 'package:simple_social_media/data/repositories/authentication_repository.dart';
-import 'package:simple_social_media/data/repositories/user_repository.dart';
-import 'package:simple_social_media/presentation/router/app_router.dart';
-import 'package:simple_social_media/presentation/screens/Login_screen/log_in_screen.dart';
-import 'package:simple_social_media/presentation/screens/Signup_screen/sign_up_screen.dart';
-import 'package:simple_social_media/presentation/screens/landing_screen/landing_screen.dart';
-import 'package:simple_social_media/presentation/screens/post_details_screen/post_details_screen.dart';
+import 'business_logic/bloc/profile_bloc/profile_bloc.dart';
+import 'business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
+import 'data/repositories/authentication_repository.dart';
+import 'data/repositories/user_repository.dart';
+import 'presentation/router/app_router.dart';
+import 'presentation/screens/Login_screen/log_in_screen.dart';
+import 'presentation/screens/Signup_screen/sign_up_screen.dart';
+import 'presentation/screens/landing_screen/landing_screen.dart';
+import 'presentation/screens/post_details_screen/post_details_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

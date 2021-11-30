@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simple_social_media/business_logic/bloc/profile_bloc/profile_bloc.dart';
-import 'package:simple_social_media/presentation/screens/widgets/avatar_picture.dart';
+import '../../../business_logic/bloc/profile_bloc/profile_bloc.dart';
+import '../widgets/avatar_picture.dart';
 
 class ProfileScreen extends StatefulWidget {
   late ProfileBloc profileBloc;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simple_social_media/presentation/screens/post_details_screen/components/post_description.dart';
-import 'package:simple_social_media/presentation/screens/post_details_screen/components/post_image_return_button.dart';
-import 'package:simple_social_media/presentation/screens/post_details_screen/components/post_title.dart';
-import 'package:simple_social_media/presentation/screens/post_details_screen/components/separator.dart';
+import 'components/post_description.dart';
+import 'components/post_image_return_button.dart';
+import 'components/separator.dart';
+import '../widgets/title_text.dart';
 
 class PostDetailsScreen extends StatelessWidget {
   //final String publisherId;
@@ -32,7 +32,13 @@ class PostDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PostTitle(title: title),
+                    TitleText(
+                      text: title,
+                      fontWeight: FontWeight.w500,
+                      textColor: Colors.black,
+                      textSize: 24,
+                      verticalPadding: 12.5,
+                    ),
                     const Separator(),
                     PostDescription(description: description),
                   ],

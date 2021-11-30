@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_social_media/presentation/screens/Login_screen/log_in_screen.dart';
-import 'package:simple_social_media/presentation/screens/Signup_screen/sign_up_screen.dart';
-import 'package:simple_social_media/presentation/screens/add_pin_screen/add_pin_screen.dart';
-import 'package:simple_social_media/presentation/screens/feed_screen/feed_screen.dart';
-import 'package:simple_social_media/presentation/screens/landing_screen/landing_screen.dart';
-import 'package:simple_social_media/presentation/screens/profile_screen/profile_screen.dart';
+import '../screens/Login_screen/log_in_screen.dart';
+import '../screens/Signup_screen/sign_up_screen.dart';
+import '../screens/add_pin_screen/add_pin_screen.dart';
+import '../screens/feed_screen/feed_screen.dart';
+import '../screens/landing_screen/landing_screen.dart';
+import '../screens/profile_screen/profile_screen.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings routeSettings) {

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:simple_social_media/data/models/user_model.dart';
+import '../models/user_model.dart';
 
 class UserRepository {
   late FirebaseAuth _auth;
@@ -13,7 +13,7 @@ class UserRepository {
     try {
       var currentUser =
           await getUserUnderId(FirebaseAuth.instance.currentUser!.uid);
-      //For debuggin purposes only
+      //For debugging purposes only
       //print('Gets printed from inside of user_repository');
       //print(currentUser);
       return currentUser;

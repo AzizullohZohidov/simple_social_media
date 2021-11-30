@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import '../widgets/title_text.dart';
 
 class FeedScreen extends StatelessWidget {
   List<String> photoUrls = [
@@ -38,7 +39,6 @@ class FeedScreen extends StatelessWidget {
   }
 
   Widget _buildImageGrid() {
-    print('Gets built');
     return Expanded(
       child: RefreshIndicator(
         onRefresh: () {
@@ -72,31 +72,6 @@ class FeedScreen extends StatelessWidget {
     );
   }
 
-  PreferredSize _buildRegularAppBar() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(60),
-      child: AppBar(
-        title: Row(
-          children: const [
-            SizedBox(width: 8),
-            Text(
-              'Recently Added',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.deepOrange,
-              ),
-            ),
-          ],
-        ),
-        backgroundColor: Colors.white10,
-        systemOverlayStyle:
-            SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
-        elevation: 0,
-      ),
-    );
-  }
-
   PreferredSize _buildBlurredAppBar(BuildContext context) {
     return PreferredSize(
       child: Container(
@@ -115,14 +90,12 @@ class FeedScreen extends StatelessWidget {
               child: SafeArea(
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 28),
-                  child: const Text(
-                    'Recently Added',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepOrange,
-                    ),
+                  padding: const EdgeInsets.symmetric(horizontal: 28),
+                  child: const TitleText(
+                    text: 'Recently Added',
+                    fontWeight: FontWeight.bold,
+                    textColor: Colors.deepOrange,
+                    textSize: 24,
                   ),
                 ),
               ),

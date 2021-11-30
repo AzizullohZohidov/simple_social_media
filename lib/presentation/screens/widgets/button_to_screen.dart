@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_social_media/presentation/router/app_router.dart';
+import '../../router/app_router.dart';
 
 class ButtonToScreen extends StatelessWidget {
   final String toRoute;
