@@ -26,7 +26,7 @@ class LogInScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 75),
+                  const SizedBox(height: 50),
                   const TitleText(
                     text: 'Log in',
                     fontWeight: FontWeight.bold,

@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class AvatarPicture extends StatelessWidget {
-  const AvatarPicture({
+  AvatarPicture({
     Key? key,
     required this.avatarImagePath,
     required this.radius,
@@ -10,14 +12,31 @@ class AvatarPicture extends StatelessWidget {
     this.rightMargin = 0,
     this.bottomMargin = 0,
     this.leftMargin = 0,
-  }) : super(key: key);
-  final String avatarImagePath;
+  }) : super(key: key) {
+    fromFile = false;
+  }
+
+  AvatarPicture.fromFile({
+    Key? key,
+    required this.radius,
+    required this.imageFile,
+    this.outlineWidth = 4,
+    this.topMargin = 0,
+    this.rightMargin = 0,
+    this.bottomMargin = 0,
+    this.leftMargin = 0,
+  }) : super(key: key) {
+    fromFile = true;
+  }
+  late String avatarImagePath;
   final double radius;
+  late File imageFile;
   final double outlineWidth;
   final double topMargin;
   final double rightMargin;
   final double bottomMargin;
   final double leftMargin;
+  late bool fromFile;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +52,7 @@ class AvatarPicture extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: NetworkImage(avatarImagePath),
+          image: imageBasedOnFromFile(fromFile),
           fit: BoxFit.cover,
         ),
         border: Border.all(width: outlineWidth, color: Colors.white),
@@ -46,5 +65,13 @@ class AvatarPicture extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  ImageProvider imageBasedOnFromFile(bool fromFile) {
+    if (fromFile) {
+      return FileImage(imageFile);
+    } else {
+      return NetworkImage(avatarImagePath);
+    }
   }
 }

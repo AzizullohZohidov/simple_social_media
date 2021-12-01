@@ -18,11 +18,11 @@ class ImageRepository {
     }
   }
 
-  Future<File?> _pickImageFromGallery() async {
+  Future<File?> pickImageFromGallery() async {
     return await _pickImageCamOrGallery(ImageSource.gallery);
   }
 
-  Future<File?> _takePhoto() async {
+  Future<File?> takePhoto() async {
     return await _pickImageCamOrGallery(ImageSource.camera);
   }
 

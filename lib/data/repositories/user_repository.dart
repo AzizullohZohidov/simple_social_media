@@ -27,22 +27,8 @@ class UserRepository {
     String firstName;
     String lastName;
     String createdAt;
+    String userProfileImageUrl;
     try {
-      /*FirebaseFirestore.instance
-          .collection('users')
-          .doc(uid)
-          .get()
-          .then<dynamic>((DocumentSnapshot snapshot) async {
-          id = snapshot.get('id');
-          email = snapshot.get('email');
-          firstName = snapshot.get('firstName');
-          lastName = snapshot.get('lastName');
-          createdAt = snapshot.get('createdAt';,
-        print('Id gets printed from inside of user_repository before returning');
-        print(id);
-        //return user;
-      });*/
-
       DocumentSnapshot userSnapshot =
           await FirebaseFirestore.instance.collection('users').doc(uid).get();
       id = userSnapshot.get('id');
@@ -50,12 +36,14 @@ class UserRepository {
       firstName = userSnapshot.get('firstName');
       lastName = userSnapshot.get('lastName');
       createdAt = userSnapshot.get('createdAt');
+      userProfileImageUrl = userSnapshot.get('userProfileImage');
       var user = UserModel(
         id: id,
         email: email,
         firstName: firstName,
         lastName: lastName,
         createdAt: createdAt,
+        userPrfileImageUrl: userProfileImageUrl,
       );
       //For debuggin purposes only
       //print('Gets printed from inside of user_repository before returning');

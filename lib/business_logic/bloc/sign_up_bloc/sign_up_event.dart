@@ -59,6 +59,7 @@ class SignUpSubmitted extends SignUpEvent {
     required this.lastName,
     required this.password,
     required this.confirmPassword,
+    required this.userProfileImage,
   });
 
   final String email;
@@ -66,6 +67,7 @@ class SignUpSubmitted extends SignUpEvent {
   final String lastName;
   final String password;
   final String confirmPassword;
+  final File? userProfileImage;
 
   @override
   List<Object> get props =>

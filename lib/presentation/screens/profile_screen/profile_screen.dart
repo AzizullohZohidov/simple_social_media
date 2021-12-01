@@ -50,11 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              AvatarPicture(
-                                avatarImagePath:
-                                    'https://cdn.pixabay.com/photo/2020/06/28/04/07/cat-5347790_1280.jpg',
-                                radius: widget.phoneSize.width * 0.2,
-                              ),
+                              _buildProfileImage(state),
                               _buildName(state),
                               _buildProfession(),
                               _buildEmail(state),
@@ -86,6 +82,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
       systemOverlayStyle:
           SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
       elevation: 0,
+    );
+  }
+
+  Widget _buildProfileImage(ProfileInitialization state) {
+    return AvatarPicture(
+      avatarImagePath: state.currentUser.userPrfileImageUrl,
+      radius: widget.phoneSize.width * 0.2,
     );
   }
 

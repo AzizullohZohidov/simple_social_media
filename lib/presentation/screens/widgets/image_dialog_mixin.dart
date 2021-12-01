@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
 
-mixin ImageDialog {
-  Future<void> showImageDialog(BuildContext context) {
-    return showDialog(
+mixin ImageDialogMixin {
+  void showImageDialog(BuildContext context) {
+    showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
@@ -19,6 +19,7 @@ mixin ImageDialog {
                   text: 'Camera',
                   iconColor: Colors.deepOrange,
                   textColor: Colors.deepOrange,
+                  source: ImageSource.camera,
                 ),
                 _buildDialogOptionButton(
                   context: context,
@@ -26,6 +27,7 @@ mixin ImageDialog {
                   text: 'Gallery',
                   iconColor: Colors.deepOrange,
                   textColor: Colors.deepOrange,
+                  source: ImageSource.gallery,
                 ),
               ],
             ),
@@ -39,12 +41,14 @@ mixin ImageDialog {
     required String text,
     required Color iconColor,
     required Color textColor,
+    required ImageSource source,
   }) {
     return InkWell(
       onTap: () {
         BlocProvider.of<ImageBloc>(context).add(
-          const ImageRequested(imageSource: ImageSource.camera),
+          ImageRequested(imageSource: source),
         );
+        Navigator.pop(context);
       },
       child: _buildIconText(
         icon,

@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
+import 'package:simple_social_media/data/repositories/image_repository.dart';
 import 'business_logic/bloc/profile_bloc/profile_bloc.dart';
 import 'business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
 import 'data/repositories/authentication_repository.dart';
@@ -44,6 +46,10 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   ProfileBloc(userRepository: UserRepository()),
             ),
+            BlocProvider<ImageBloc>(
+              create: (context) =>
+                  ImageBloc(imageRepository: ImageRepository()),
+            ),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -53,14 +59,14 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
             ),
             //home: LandingScreen(),
-            //home: SignUpScreen(),
-            home: PostDetailsScreen(
+            home: SignUpScreen(),
+            /*home: PostDetailsScreen(
               imageUrl:
                   'https://cdn.pixabay.com/photo/2020/06/28/04/07/cat-5347790_1280.jpg',
               title: 'Interesting looking cat!',
               description:
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ',
-            ),
+            ),*/
             onGenerateRoute: AppRouter.onGenerateRoute,
           ),
         );

@@ -1,56 +1,5 @@
 part of 'sign_up_bloc.dart';
 
-/*class SignUpState extends Equatable {
-  const SignUpState({
-    this.email = '',
-    this.firstName = '',
-    this.lastName = '',
-    this.password = '',
-    this.confirmPassword = '',
-    this.emailError = '',
-    this.passwordError = '',
-  });
-
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String password;
-  final String confirmPassword;
-  final String emailError;
-  final String passwordError;
-
-  @override
-  List<Object> get props => [
-        email,
-        firstName,
-        lastName,
-        password,
-        confirmPassword,
-        emailError,
-        passwordError,
-      ];
-
-  SignUpState copyWith({
-    String? email,
-    String? firstName,
-    String? lastName,
-    String? password,
-    String? confirmPassword,
-    String? emailError,
-    String? passwordError,
-  }) {
-    return SignUpState(
-      email: email ?? this.email,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      password: password ?? this.password,
-      confirmPassword: confirmPassword ?? this.confirmPassword,
-      emailError: emailError ?? this.emailError,
-      passwordError: passwordError ?? this.passwordError,
-    );
-  }
-}*/
-
 abstract class SignUpState extends Equatable {
   const SignUpState();
 
@@ -66,12 +15,14 @@ class SignUpValidationError extends SignUpState {
     required this.firstNameError,
     required this.lastNameError,
     required this.passwordError,
+    required this.imageError,
   });
 
   final String emailError;
   final String firstNameError;
   final String lastNameError;
   final String passwordError;
+  final String imageError;
 
   @override
   List<Object> get props => [
@@ -79,6 +30,7 @@ class SignUpValidationError extends SignUpState {
         firstNameError,
         lastNameError,
         passwordError,
+        imageError,
       ];
 }
 

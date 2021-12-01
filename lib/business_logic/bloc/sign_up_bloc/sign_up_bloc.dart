@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:simple_social_media/core/validators/is_image_null_mixin.dart';
 import '../../../core/validators/confirm_password_validator_mixin.dart';
 import '../../../core/validators/email_validator_mixin.dart';
 import '../../../core/validators/passed_parameters_validator_mixin.dart';
@@ -18,7 +21,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         PasswordValidatorMixin,
         ConfirmPasswordValidatorMixin,
         StringNonemptyValidatorMixin,
-        PassedParametersValidatorMixin {
+        PassedParametersValidatorMixin,
+        IsImageNullMixin {
   SignUpBloc({required this.authRepo}) : super(SignUpInitial()) {
     on<SignUpEmailChanged>(_onEmailChanged);
     on<SignUpFirstNameChanged>(_onFirstNameChanged);
@@ -78,6 +82,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
       isStringNotEmpty(event.firstName),
       isStringNotEmpty(event.lastName),
       checkPasswordMatch(event.password, event.confirmPassword),
+      isImageNull(event.userProfileImage),
     ]);
     if (!areFieldsValid) {
       emit(
@@ -88,6 +93,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
           passwordError: validatePassword(event.password) != ''
               ? validatePassword(event.password)
               : checkPasswordMatch(event.password, event.confirmPassword),
+          imageError: isImageNull(event.userProfileImage),
         ),
       );
       return;
@@ -99,6 +105,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
         firstName: event.firstName,
         lastName: event.lastName,
         password: event.password,
+        imageFile: event.userProfileImage!,
       );
       emit(SignUpSubmissionSuccess());
     } catch (error) {

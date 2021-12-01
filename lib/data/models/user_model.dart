@@ -6,14 +6,15 @@ class UserModel extends Equatable {
   final String firstName;
   final String lastName;
   final String createdAt;
+  final String userPrfileImageUrl;
 
-  UserModel({
-    required this.id,
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.createdAt,
-  });
+  UserModel(
+      {required this.id,
+      required this.email,
+      required this.firstName,
+      required this.lastName,
+      required this.createdAt,
+      required this.userPrfileImageUrl});
 
   UserModel.empty({
     this.id = '',
@@ -21,8 +22,10 @@ class UserModel extends Equatable {
     this.firstName = '',
     this.lastName = '',
     this.createdAt = '',
+    this.userPrfileImageUrl = '',
   });
 
   @override
-  List<Object?> get props => [id, email, firstName, lastName, createdAt];
+  List<Object?> get props =>
+      [id, email, firstName, lastName, createdAt, userPrfileImageUrl];
 }
