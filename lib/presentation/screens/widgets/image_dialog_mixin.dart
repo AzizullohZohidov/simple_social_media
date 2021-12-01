@@ -7,7 +7,7 @@ mixin ImageDialogMixin {
   void showImageDialog(BuildContext context) {
     showDialog(
         context: context,
-        builder: (context) {
+        builder: (ctx) {
           return AlertDialog(
             title: const Text('Please choose an option'),
             content: Column(

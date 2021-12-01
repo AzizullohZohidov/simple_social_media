@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
+import 'package:simple_social_media/data/repositories/image_repository.dart';
 import '../screens/Login_screen/log_in_screen.dart';
 import '../screens/Signup_screen/sign_up_screen.dart';
 import '../screens/add_pin_screen/add_pin_screen.dart';
@@ -25,7 +28,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ProfileScreen());
         break;
       case RouteConstants.addPinScreen:
-        return MaterialPageRoute(builder: (_) => AddPinScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => ImageBloc(
+              imageRepository: ImageRepository(),
+            ),
+            child: AddPinScreen(),
+          ),
+        );
         break;
       default:
         return MaterialPageRoute(builder: (_) => LogInScreen());

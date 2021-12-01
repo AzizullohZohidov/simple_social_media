@@ -1,17 +1,24 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
+import 'package:simple_social_media/presentation/screens/widgets/image_dialog_mixin.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/text_field_custom.dart';
 import '../widgets/title_text.dart';
 
-class AddPinScreen extends StatelessWidget {
+class AddPinScreen extends StatelessWidget with ImageDialogMixin {
+  late ImageBloc imageBloc;
   AddPinScreen({Key? key}) : super(key: key);
   var pinNameController = TextEditingController();
   var pinDescriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var phoneSize = MediaQuery.of(context).size;
+    imageBloc = BlocProvider.of<ImageBloc>(context);
     return Scaffold(
       appBar: _buildAppBar(context),
       body: Align(
@@ -22,11 +29,15 @@ class AddPinScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildPickImage(
-                  'https://cdn.pixabay.com/photo/2020/06/28/04/07/cat-5347790_1280.jpg',
-                  //null,
-                  phoneSize,
-                  15,
+                BlocBuilder<ImageBloc, ImageState>(
+                  builder: (context, state) {
+                    return _buildPickImage(
+                      context: context,
+                      imageFile: state is ImageSuccess ? state.image : null,
+                      phoneSize: phoneSize,
+                      radius: 15,
+                    );
+                  },
                 ),
                 const SizedBox(height: 30),
                 TextFieldCustom(
@@ -84,28 +95,39 @@ class AddPinScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPickImage(String? imageUrl, Size phoneSize, double radius) {
-    return Container(
-      margin: const EdgeInsets.only(
-        top: 10,
+  Widget _buildPickImage({
+    required BuildContext context,
+    File? imageFile,
+    required Size phoneSize,
+    required double radius,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        showImageDialog(context);
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+          top: 10,
+        ),
+        constraints: BoxConstraints(maxHeight: phoneSize.height * 0.5),
+        child: imageFile != null
+            ? _buildImage(imageFile, radius)
+            : _buildAddImagePlaceholder(),
       ),
-      height: phoneSize.height * 0.5,
-      child: imageUrl == null
-          ? _buildAddImagePlaceholder()
-          : _buildImage(imageUrl, radius),
     );
   }
 
-  Widget _buildImage(String imageUrl, double radius) {
+  Widget _buildImage(File imageFile, double radius) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(radius),
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.fitHeight,
+        child: Image.file(
+          imageFile,
+          fit: BoxFit.fitWidth,
         ));
   }
 
   Widget _buildAddImagePlaceholder() {
+    print('Build placeholder again');
     return DottedBorder(
       borderType: BorderType.RRect,
       strokeWidth: 3,

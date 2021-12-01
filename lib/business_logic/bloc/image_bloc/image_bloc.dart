@@ -16,6 +16,7 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
 
   void _onImageRequested(ImageRequested event, Emitter<ImageState> emit) async {
     try {
+      print('Image request came');
       File? imageFile;
       if (event.imageSource == ImageSource.camera) {
         imageFile = await imageRepository.takePhoto();
@@ -24,6 +25,7 @@ class ImageBloc extends Bloc<ImageEvent, ImageState> {
       }
       if (imageFile != null) {
         emit(ImageSuccess(imageFile));
+        print('image is emitted');
         return;
       }
     } catch (error) {

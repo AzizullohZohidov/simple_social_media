@@ -60,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   )
-                : const Text('Hmm data seems to be missing'),
+                : const CircularProgressIndicator(),
           );
         },
       ),
