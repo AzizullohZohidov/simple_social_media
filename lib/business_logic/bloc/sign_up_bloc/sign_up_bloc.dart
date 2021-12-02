@@ -111,6 +111,5 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState>
     } catch (error) {
       emit(SignUpSubmissionFailure());
     }
-    print('Success state is emitted');
   }
 }
