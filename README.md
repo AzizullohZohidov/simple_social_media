@@ -16,11 +16,7 @@ This application includes all basic functionalities of social media.
 -Users can view their profile by navigating to profile screen
 
 ## Sign Up Screen
-![Screenshot_2021_12_04_20_50_21_833_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717847-4020429a-5945-4bfe-b983-d42c80033cf6.jpg)
-![Screenshot_2021_12_04_20_50_29_905_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717896-905d45c8-d227-4cce-9948-e02a8209b1c6.jpg)
-![Screenshot_2021_12_04_20_52_46_253_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717903-5823bff8-e4a8-49c7-a9d4-f24afb9ff862.jpg)
-![Screenshot_2021_12_04_20_53_59_173_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717914-baa9a551-f0da-4524-be68-e8d55a07d0c5.jpg)
-![Screenshot_2021_12_04_20_56_25_686_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717923-638a8870-f04e-4cd2-88b6-8a711ad070d0.jpg)
+![Sign Up](https://user-images.githubusercontent.com/86743936/144718277-cb2edd10-4dc6-46b0-ba01-2f138876ee8d.jpg)
 
 ## Log In Screen
 ![Screenshot_2021_12_04_21_06_33_342_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718109-46682525-0270-4e8b-8f13-e592484b40c6.jpg)
