@@ -19,25 +19,16 @@ This application includes all basic functionalities of social media.
 ![Sign Up](https://user-images.githubusercontent.com/86743936/144718277-cb2edd10-4dc6-46b0-ba01-2f138876ee8d.jpg)
 
 ## Log In Screen
-![Screenshot_2021_12_04_21_06_33_342_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718109-46682525-0270-4e8b-8f13-e592484b40c6.jpg)
-![Screenshot_2021_12_04_21_06_39_065_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718116-f9213ef5-79a6-47be-987c-5b5f53201259.jpg)
-![Screenshot_2021_12_04_21_07_00_059_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718122-7a186b95-933f-4c56-b70b-0c686cc00ae9.jpg)
-![Screenshot_2021_12_04_21_07_10_405_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718133-75c80c26-5aba-44f1-a250-c3c3b9b9b103.jpg)
+![Log In](https://user-images.githubusercontent.com/86743936/144718698-240f2f54-3080-4748-9d6b-320792ee55a9.jpg)
 
 ## Profile Screen
-![Screenshot_2021_12_04_20_57_08_473_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717954-7dc98185-f9a1-49c1-b564-58770d49e545.jpg)
-![Screenshot_2021_12_04_21_03_56_349_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717972-f576f09a-5ff6-4298-aa41-57760a7a041b.jpg)
-![Screenshot_2021_12_04_21_04_01_936_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144717983-c3ccc5f8-22b4-4928-956b-854f95a587b0.jpg)
+![Profile](https://user-images.githubusercontent.com/86743936/144718716-e1b40f81-e439-4ff1-81f5-f3af95c0095f.jpg)
 
 ## Add Post Screen
-![Screenshot_2021_12_04_20_57_18_807_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718012-9c230b56-302f-47a6-a58f-f409e620db27.jpg)
-![Screenshot_2021_12_04_21_04_48_816_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718062-b602d7ec-cd98-40df-be96-483aeb8d17b3.jpg)
-![Screenshot_2021_12_04_21_00_19_475_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718028-b6b349ce-ab7b-4d2b-88e5-f000bf6ec80e.jpg)
-![Screenshot_2021_12_04_21_00_25_577_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718035-c86627bf-02f4-45c7-9209-7b020364c98a.jpg)
+![Add Post](https://user-images.githubusercontent.com/86743936/144718726-a6c4c95f-5ee2-4649-bdc0-ad9a072f25a2.jpg)
 
 ## Feed Screen
-![Screenshot_2021_12_04_21_04_11_597_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718078-3c93b0d9-3c97-405f-9fe0-2ef163b49d08.jpg)
-![Screenshot_2021_12_04_21_06_15_741_com_example_simple_social_media](https://user-images.githubusercontent.com/86743936/144718088-9d521af2-da61-4e63-82fe-b380123adde1.jpg)
+![Feed Screen](https://user-images.githubusercontent.com/86743936/144718730-d5406d2a-8092-4ec1-afee-b8e6759d5d8b.jpg)
 
 ##
 
