@@ -19,3 +19,12 @@ class ProfileInitialization extends ProfileState {
   @override
   List<Object> get props => [currentUser];
 }
+
+class ProfileRefreshed extends ProfileState {
+  const ProfileRefreshed({required this.currentUser});
+
+  final UserModel currentUser;
+
+  @override
+  List<Object> get props => [currentUser];
+}

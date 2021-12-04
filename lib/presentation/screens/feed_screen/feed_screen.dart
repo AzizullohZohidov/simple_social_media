@@ -30,10 +30,10 @@ class FeedScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ImagesGrid(
+            /*ImagesGrid(
               photoUrls: photoUrls,
               tileCornerRadius: tileCornerRadius,
-            ),
+            ),*/
           ],
         ),
       ),

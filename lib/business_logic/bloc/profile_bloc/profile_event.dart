@@ -13,3 +13,10 @@ class ProfileInitializationRequested extends ProfileEvent {
   @override
   List<Object> get props => [];
 }
+
+class ProfileRefreshingRequested extends ProfileEvent {
+  const ProfileRefreshingRequested();
+
+  @override
+  List<Object> get props => [];
+}

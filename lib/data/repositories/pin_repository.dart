@@ -88,12 +88,12 @@ class PinRepository {
     required String pinDocId,
   }) async {
     return FirebaseFirestore.instance.collection('users').doc(userid).update({
-      'pinImageIds': FieldValue.arrayUnion([pinDocId])
+      'pinIds': FieldValue.arrayUnion([pinDocId])
     });
   }
 
   //Fetches pin under given id
-  Future<PinModel?> _fetchPin({required String pinDocId}) async {
+  Future<PinModel> _fetchPin({required String pinDocId}) async {
     try {
       DocumentSnapshot pinSnapshot = await FirebaseFirestore.instance
           .collection('pins')
@@ -101,14 +101,16 @@ class PinRepository {
           .get();
       var pin = PinModel(
         userId: pinSnapshot.get('userId'),
-        pinDocId: pinSnapshot.get('pinDocId'),
-        pinImageUrl: pinSnapshot.get('pinDocId'),
+        pinDocId: pinSnapshot.get('pinId'),
+        pinImageUrl: pinSnapshot.get('pinImageUrl'),
         pinName: pinSnapshot.get('pinName'),
         pinDescription: pinSnapshot.get('pinDescription'),
         createdAt: pinSnapshot.get('createdAt'),
       );
       return pin;
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   }
 
   //Fetches given list of pins and returns list of pinModels
@@ -118,9 +120,7 @@ class PinRepository {
       List<PinModel> pinModels = [];
       for (var pinDocId in pinDocIds) {
         var pinModel = await _fetchPin(pinDocId: pinDocId);
-        if (pinModel != null) {
-          pinModels.add(pinModel);
-        }
+        pinModels.add(pinModel);
       }
       return pinModels;
     } catch (error) {

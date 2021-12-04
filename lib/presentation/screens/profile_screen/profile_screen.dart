@@ -27,48 +27,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     widget.phoneSize = MediaQuery.of(context).size;
     return Scaffold(
-      //appBar: _buildAppBar(),
       body: BlocBuilder<ProfileBloc, ProfileState>(
+        buildWhen: (prev, curr) {
+          if (prev != curr) {
+            return true;
+          } else if (curr is ProfileInitialization) {
+            return true;
+          }
+          return false;
+        },
         builder: (context, state) {
           print(state);
           return Center(
             child: state is ProfileInitialization
-                ? Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 350,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.redAccent.shade200,
-                              Colors.orange.shade300,
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                        ),
-                        child: SafeArea(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              _buildProfileImage(state),
-                              _buildName(state),
-                              _buildProfession(),
-                              _buildEmail(state),
-                              const TitleText(
-                                text: 'My Posts',
-                                fontWeight: FontWeight.bold,
-                                textColor: Colors.deepOrange,
-                                textSize: 24,
-                              ),
-                              _buildMyImagesGrid(state),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
+                ? _buildMyImagesGrid(state)
                 : const CircularProgressIndicator(),
           );
         },
@@ -76,28 +48,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  AppBar _buildAppBar() {
-    return AppBar(
-      centerTitle: true,
-      title: const Text(
-        'Profile',
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Colors.deepOrange,
-        ),
-      ),
-      backgroundColor: Colors.white10,
-      systemOverlayStyle:
-          SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.white10),
-      elevation: 0,
-    );
-  }
-
   Widget _buildProfileImage(ProfileInitialization state) {
     return AvatarPicture(
       avatarImagePath: state.currentUser.userProfileImageUrl,
-      radius: widget.phoneSize.width * 0.2,
+      radius: widget.phoneSize.width * 0.18,
+      outlineWidth: 3,
     );
   }
 
@@ -152,14 +107,81 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildMyImagesGrid(ProfileInitialization state) {
-    if (state.currentUser.pinImageIds == []) {
-      return const Center(
-        child: Text('Hey it seems you have not uploaded photos yet!'),
+    if (state.currentUser.userPins.isEmpty) {
+      return Column(
+        children: [
+          _buildProfileBar(state, 24, 24, 24),
+          const Expanded(
+            child: Center(
+              child: Text('Hey it seems you have not uploaded photos yet!'),
+            ),
+          ),
+        ],
       );
     }
     return ImagesGrid(
-      photoUrls: state.currentUser.pinImageIds,
+      pins: state.currentUser.userPins,
       tileCornerRadius: 15,
+      needPrefixWidget: true,
+      prefixWidget: _buildProfileBar(state),
+    );
+  }
+
+  Widget _buildProfileBar(
+    ProfileInitialization state, [
+    double topPadding = 0,
+    double leftPadding = 0,
+    double rightPadding = 0,
+  ]) {
+    return Transform.scale(
+      scale: 1.14,
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: topPadding,
+          right: rightPadding,
+          left: leftPadding,
+        ),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 325,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.redAccent.shade200,
+                    Colors.orange.shade300,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _buildProfileImage(state),
+                    _buildName(state),
+                    _buildProfession(),
+                    _buildEmail(state),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              alignment: Alignment.centerLeft,
+              child: const TitleText(
+                text: 'My Posts',
+                fontWeight: FontWeight.bold,
+                textColor: Colors.deepOrange,
+                textSize: 21,
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
     );
   }
 }

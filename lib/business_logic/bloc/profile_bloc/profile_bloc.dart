@@ -10,6 +10,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserRepository userRepository;
   ProfileBloc({required this.userRepository}) : super(const ProfileInitial()) {
     on<ProfileInitializationRequested>(_onProfileInitializationRequested);
+    on<ProfileRefreshingRequested>(_onProfileRefreshingRequested);
   }
 
   void _onProfileInitializationRequested(
@@ -20,10 +21,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       UserModel? currentUser = await userRepository.getCurrentUser();
       emit(ProfileInitialization(currentUser: currentUser!));
       print('Emiting from try block');
-      //For debugging purposes only
-      //print(currentUser);
     } catch (error) {
       print('Emiting from catch block');
+      emit(ProfileInitialization(currentUser: UserModel.empty()));
+    }
+  }
+
+  void _onProfileRefreshingRequested(
+    ProfileRefreshingRequested event,
+    Emitter<ProfileState> emit,
+  ) async {
+    try {
+      UserModel? currentUser = await userRepository.getCurrentUser();
+      emit(ProfileRefreshed(currentUser: currentUser!));
+    } catch (error) {
       emit(ProfileInitialization(currentUser: UserModel.empty()));
     }
   }

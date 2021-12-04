@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:simple_social_media/data/models/pin_model.dart';
 
 class UserModel extends Equatable {
   final String id;
@@ -6,7 +7,7 @@ class UserModel extends Equatable {
   final String firstName;
   final String lastName;
   final String createdAt;
-  final List<String> pinImageIds;
+  final List<PinModel> userPins;
   final String userProfileImageUrl;
 
   UserModel(
@@ -15,7 +16,7 @@ class UserModel extends Equatable {
       required this.firstName,
       required this.lastName,
       required this.createdAt,
-      required this.pinImageIds,
+      required this.userPins,
       required this.userProfileImageUrl});
 
   UserModel.empty({
@@ -24,7 +25,7 @@ class UserModel extends Equatable {
     this.firstName = '',
     this.lastName = '',
     this.createdAt = '',
-    this.pinImageIds = const [],
+    this.userPins = const [],
     this.userProfileImageUrl = '',
   });
 
@@ -35,7 +36,7 @@ class UserModel extends Equatable {
         firstName,
         lastName,
         createdAt,
-        pinImageIds,
+        userPins,
         userProfileImageUrl,
       ];
 }

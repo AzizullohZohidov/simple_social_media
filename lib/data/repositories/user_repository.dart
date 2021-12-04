@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:simple_social_media/data/models/pin_model.dart';
+import 'package:simple_social_media/data/repositories/pin_repository.dart';
 import '../models/user_model.dart';
 
 class UserRepository {
   late FirebaseAuth _auth;
-  UserRepository() {
+  final PinRepository pinRepository;
+  UserRepository({required this.pinRepository}) {
     _auth = FirebaseAuth.instance;
   }
 
@@ -13,9 +16,6 @@ class UserRepository {
     try {
       var currentUser =
           await getUserUnderId(FirebaseAuth.instance.currentUser!.uid);
-      //For debugging purposes only
-      //print('Gets printed from inside of user_repository');
-      //print(currentUser);
       return currentUser;
     } catch (error) {}
   }
@@ -27,7 +27,7 @@ class UserRepository {
     String firstName;
     String lastName;
     String createdAt;
-    List<String> pinImageIds = [];
+    List<String> pinIds = [];
     String userProfileImageUrl;
     try {
       DocumentSnapshot userSnapshot =
@@ -37,10 +37,12 @@ class UserRepository {
       firstName = userSnapshot.get('firstName');
       lastName = userSnapshot.get('lastName');
       createdAt = userSnapshot.get('createdAt');
-      List temp = userSnapshot.get('pinImageIds');
+      List temp = userSnapshot.get('pinIds');
       for (var element in temp) {
-        pinImageIds.add(element.toString());
+        pinIds.add(element.toString());
       }
+      List<PinModel> userPins =
+          await pinRepository.fetchArrayOfPins(pinDocIds: pinIds);
       userProfileImageUrl = userSnapshot.get('userProfileImage');
       var user = UserModel(
         id: id,
@@ -48,12 +50,9 @@ class UserRepository {
         firstName: firstName,
         lastName: lastName,
         createdAt: createdAt,
-        pinImageIds: pinImageIds,
+        userPins: userPins,
         userProfileImageUrl: userProfileImageUrl,
       );
-      //For debuggin purposes only
-      //print('Gets printed from inside of user_repository before returning');
-      //print(user);
       return user;
     } catch (error) {}
   }
