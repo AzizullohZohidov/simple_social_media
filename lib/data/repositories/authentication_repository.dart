@@ -70,6 +70,7 @@ class AuthenticationRepository {
       'email': email.trim(),
       'firstName': firstName,
       'lastName': lastName,
+      'pinImageIds': [],
       'createdAt': DateTime.now().toString(),
     });
   }

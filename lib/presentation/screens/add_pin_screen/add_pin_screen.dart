@@ -104,7 +104,7 @@ class AddPinScreen extends StatelessWidget with ImageDialogMixin {
                         callback: () {
                           addPinBloc.add(
                             AddPinSubmitted(
-                              pinImageFile: pinImage!,
+                              pinImageFile: pinImage,
                               pinName: pinNameController.text,
                               pinDescription: pinDescriptionController.text,
                             ),

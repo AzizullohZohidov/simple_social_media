@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
-import 'package:simple_social_media/data/repositories/pin_repository.dart';
 import 'package:simple_social_media/presentation/screens/widgets/pick_avatar_image.dart';
 import '../../../business_logic/bloc/sign_up_bloc/sign_up_bloc.dart';
 import '../../router/app_router.dart';

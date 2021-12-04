@@ -87,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildProfileImage(ProfileInitialization state) {
     return AvatarPicture(
-      avatarImagePath: state.currentUser.userPrfileImageUrl,
+      avatarImagePath: state.currentUser.userProfileImageUrl,
       radius: widget.phoneSize.width * 0.2,
     );
   }
@@ -140,5 +140,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
     );
+  }
+
+  Widget _buildMyImagesGrid(ProfileInitialization state) {
+    if (state.currentUser.pinImageIds == []) {
+      return const Center(
+        child: Text('Hey it seems you have not uploaded photos yet!'),
+      );
+    }
+    return const Text('Here grid should be returned');
   }
 }

@@ -70,6 +70,12 @@ class SignUpSubmitted extends SignUpEvent {
   final File? userProfileImage;
 
   @override
-  List<Object> get props =>
-      [email, firstName, lastName, password, confirmPassword];
+  List<Object> get props => [
+        if (userProfileImage != null) {userProfileImage},
+        email,
+        firstName,
+        lastName,
+        password,
+        confirmPassword,
+      ];
 }

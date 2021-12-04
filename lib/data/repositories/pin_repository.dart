@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:simple_social_media/data/models/pin_model.dart';
 
 class PinRepository {
   late FirebaseAuth _auth;
@@ -44,6 +45,10 @@ class PinRepository {
       pinName: pinName,
       pinDescription: pinDescription,
     );
+    await _attachPinIdToUser(
+      userid: userId,
+      pinDocId: pinDocId,
+    );
   }
 
   //Uploads image to storage uder id returned by _uploadPinNameDetails and returns download link
@@ -75,6 +80,78 @@ class PinRepository {
       'pinDescription': pinDescription,
       'createdAt': DateTime.now().toString(),
     });
+  }
+
+  //Adds pinImage's Id to list of images published by current user
+  Future<void> _attachPinIdToUser({
+    required String userid,
+    required String pinDocId,
+  }) async {
+    return FirebaseFirestore.instance.collection('users').doc(userid).update({
+      'pinImageIds': FieldValue.arrayUnion([pinDocId])
+    });
+  }
+
+  //Fetches pin under given id
+  Future<PinModel?> _fetchPin({required String pinDocId}) async {
+    try {
+      DocumentSnapshot pinSnapshot = await FirebaseFirestore.instance
+          .collection('pins')
+          .doc(pinDocId)
+          .get();
+      var pin = PinModel(
+        userId: pinSnapshot.get('userId'),
+        pinDocId: pinSnapshot.get('pinDocId'),
+        pinImageUrl: pinSnapshot.get('pinDocId'),
+        pinName: pinSnapshot.get('pinName'),
+        pinDescription: pinSnapshot.get('pinDescription'),
+        createdAt: pinSnapshot.get('createdAt'),
+      );
+      return pin;
+    } catch (error) {}
+  }
+
+  //Fetches given list of pins and returns list of pinModels
+  Future<List<PinModel>> fetchArrayOfPins(
+      {required List<String> pinDocIds}) async {
+    try {
+      List<PinModel> pinModels = [];
+      for (var pinDocId in pinDocIds) {
+        var pinModel = await _fetchPin(pinDocId: pinDocId);
+        if (pinModel != null) {
+          pinModels.add(pinModel);
+        }
+      }
+      return pinModels;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  //Fetches all pins in pins collection and returns list of pinModels
+  //Have not used _fetchPin because using it would cost additional reading operations
+  Future<List<PinModel>> fetchAllPins() async {
+    try {
+      List<PinModel> pinModels = [];
+      var querySnapshot =
+          await FirebaseFirestore.instance.collection('pins').get();
+      var documents = querySnapshot.docs.map((doc) => doc.data());
+      for (var element in documents) {
+        pinModels.add(
+          PinModel(
+            userId: element['userId'],
+            pinDocId: element['pinId'],
+            pinImageUrl: element['pinImageUrl'],
+            pinName: element['pinName'],
+            pinDescription: element['pinDescription'],
+            createdAt: element['createdAt'],
+          ),
+        );
+      }
+      return pinModels;
+    } catch (error) {
+      throw error;
+    }
   }
 
   Future<String> _getCurrentUserId() async {

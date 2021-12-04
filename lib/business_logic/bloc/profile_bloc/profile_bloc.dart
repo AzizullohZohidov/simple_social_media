@@ -19,9 +19,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     try {
       UserModel? currentUser = await userRepository.getCurrentUser();
       emit(ProfileInitialization(currentUser: currentUser!));
+      print('Emiting from try block');
       //For debugging purposes only
       //print(currentUser);
     } catch (error) {
+      print('Emiting from catch block');
       emit(ProfileInitialization(currentUser: UserModel.empty()));
     }
   }

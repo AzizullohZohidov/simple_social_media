@@ -43,7 +43,7 @@ class AddPinBloc extends Bloc<AddPinEvent, AddPinState>
     }
     try {
       await pinRepository.uploadPin(
-        pinImageFile: event.pinImageFile,
+        pinImageFile: event.pinImageFile!,
         pinName: event.pinName,
         pinDescription: event.pinDescription,
       );

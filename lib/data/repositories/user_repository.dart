@@ -27,6 +27,7 @@ class UserRepository {
     String firstName;
     String lastName;
     String createdAt;
+    List<String> pinImageIds = [];
     String userProfileImageUrl;
     try {
       DocumentSnapshot userSnapshot =
@@ -36,6 +37,10 @@ class UserRepository {
       firstName = userSnapshot.get('firstName');
       lastName = userSnapshot.get('lastName');
       createdAt = userSnapshot.get('createdAt');
+      List temp = userSnapshot.get('pinImageIds');
+      for (var element in temp) {
+        pinImageIds.add(element.toString());
+      }
       userProfileImageUrl = userSnapshot.get('userProfileImage');
       var user = UserModel(
         id: id,
@@ -43,7 +48,8 @@ class UserRepository {
         firstName: firstName,
         lastName: lastName,
         createdAt: createdAt,
-        userPrfileImageUrl: userProfileImageUrl,
+        pinImageIds: pinImageIds,
+        userProfileImageUrl: userProfileImageUrl,
       );
       //For debuggin purposes only
       //print('Gets printed from inside of user_repository before returning');

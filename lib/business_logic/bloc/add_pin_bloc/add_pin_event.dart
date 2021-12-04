@@ -8,7 +8,7 @@ abstract class AddPinEvent extends Equatable {
 }
 
 class AddPinSubmitted extends AddPinEvent {
-  final File pinImageFile;
+  final File? pinImageFile;
   final String pinName;
   final String pinDescription;
 
@@ -19,5 +19,9 @@ class AddPinSubmitted extends AddPinEvent {
   });
 
   @override
-  List<Object> get props => [pinImageFile, pinName, pinDescription];
+  List<Object> get props => [
+        if (pinImageFile != null) {pinImageFile},
+        pinName,
+        pinDescription,
+      ];
 }
