@@ -50,7 +50,6 @@ class _FeedScreenState extends State<FeedScreen> {
               return _buildBody(state);
             }),
           ],
-          //Just testing
         ),
       ),
     );
