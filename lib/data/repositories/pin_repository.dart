@@ -17,7 +17,7 @@ class PinRepository {
     required String pinDescription,
   }) async {
     final currentUserId = await _getCurrentUserId();
-    _uploadPinToFirebase(
+    await _uploadPinToFirebase(
       pinImageFile: pinImageFile,
       pinName: pinName,
       pinDescription: pinDescription,

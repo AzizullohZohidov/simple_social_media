@@ -1,10 +1,28 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/feed_bloc/feed_bloc.dart';
 import 'package:simple_social_media/presentation/screens/widgets/images_grid.dart';
 import '../widgets/title_text.dart';
 
-class FeedScreen extends StatelessWidget {
+class FeedScreen extends StatefulWidget {
+  late FeedBloc feedBloc;
+
+  FeedScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FeedScreen> createState() => _FeedScreenState();
+}
+
+class _FeedScreenState extends State<FeedScreen> {
+  @override
+  void initState() {
+    widget.feedBloc = BlocProvider.of<FeedBloc>(context);
+    widget.feedBloc.add(FeedInitializationRequested());
+    super.initState();
+  }
+
   List<String> photoUrls = [
     'https://cdn.pixabay.com/photo/2016/06/02/02/33/triangles-1430105_1280.png',
     'https://cdn.pixabay.com/photo/2020/07/03/16/51/mountains-5367026_1280.jpg',
@@ -20,8 +38,6 @@ class FeedScreen extends StatelessWidget {
 
   double tileCornerRadius = 15;
 
-  FeedScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +46,9 @@ class FeedScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /*ImagesGrid(
-              photoUrls: photoUrls,
-              tileCornerRadius: tileCornerRadius,
-            ),*/
+            BlocBuilder<FeedBloc, FeedState>(builder: (context, state) {
+              return _buildBody(state);
+            }),
           ],
         ),
       ),
@@ -73,5 +88,15 @@ class FeedScreen extends StatelessWidget {
       ),
       preferredSize: Size(MediaQuery.of(context).size.width, 80),
     );
+  }
+
+  Widget _buildBody(FeedState state) {
+    if (state is FeedInitialization) {
+      return Expanded(
+        child:
+            ImagesGrid(pins: state.allPins, tileCornerRadius: tileCornerRadius),
+      );
+    }
+    return const CircularProgressIndicator();
   }
 }

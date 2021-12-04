@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/feed_bloc/feed_bloc.dart';
 import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
 import 'package:simple_social_media/data/repositories/image_repository.dart';
 import 'package:simple_social_media/data/repositories/pin_repository.dart';
@@ -48,6 +49,11 @@ class MyApp extends StatelessWidget {
                 userRepository: UserRepository(
                   pinRepository: PinRepository(),
                 ),
+              ),
+            ),
+            BlocProvider<FeedBloc>(
+              create: (context) => FeedBloc(
+                pinRepository: PinRepository(),
               ),
             ),
             BlocProvider<ImageBloc>(

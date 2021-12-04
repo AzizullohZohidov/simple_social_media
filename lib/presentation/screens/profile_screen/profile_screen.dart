@@ -23,6 +23,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
   }
 
+  /*@override
+  void didChangeDependencies() {
+    widget.profileBloc.add(ProfileInitializationRequested());
+    super.didChangeDependencies();
+  }*/
+
   @override
   Widget build(BuildContext context) {
     widget.phoneSize = MediaQuery.of(context).size;
@@ -127,6 +133,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Widget _buildMyPostsTitle() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+      alignment: Alignment.centerLeft,
+      child: const TitleText(
+        text: 'My Posts',
+        fontWeight: FontWeight.bold,
+        textColor: Colors.deepOrange,
+        textSize: 21,
+      ),
+    );
+  }
+
   Widget _buildProfileBar(
     ProfileInitialization state, [
     double topPadding = 0,
@@ -168,16 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-              alignment: Alignment.centerLeft,
-              child: const TitleText(
-                text: 'My Posts',
-                fontWeight: FontWeight.bold,
-                textColor: Colors.deepOrange,
-                textSize: 21,
-              ),
-            ),
+            _buildMyPostsTitle(),
             const SizedBox(height: 10),
           ],
         ),

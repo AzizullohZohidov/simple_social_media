@@ -20,37 +20,35 @@ class ImagesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: RefreshIndicator(
-        onRefresh: () {
-          return Future.value();
-        },
-        child: StaggeredGridView.countBuilder(
-          padding: const EdgeInsets.only(
-            top: 24, //24
-            left: 24, //24
-            right: 24, //24
-          ),
-          crossAxisCount: 4,
-          itemCount: needPrefixWidget ? pins.length + 1 : pins.length,
-          itemBuilder: (BuildContext context, int index) {
-            if (needPrefixWidget && index == 0) {
-              return prefixWidget;
-            }
-            return svw.StaggeredTile(
-              tileCornerRadius: tileCornerRadius,
-              pin: needPrefixWidget ? pins[index - 1] : pins[index],
-            );
-          },
-          staggeredTileBuilder: (int index) {
-            if (needPrefixWidget && index == 0) {
-              return const StaggeredTile.fit(4);
-            }
-            return const StaggeredTile.fit(2);
-          },
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
+    return RefreshIndicator(
+      onRefresh: () {
+        return Future.value();
+      },
+      child: StaggeredGridView.countBuilder(
+        padding: const EdgeInsets.only(
+          top: 24, //later to be replaced by dynamic calculation
+          left: 24,
+          right: 24,
         ),
+        crossAxisCount: 4,
+        itemCount: needPrefixWidget ? pins.length + 1 : pins.length,
+        itemBuilder: (BuildContext context, int index) {
+          if (needPrefixWidget && index == 0) {
+            return prefixWidget;
+          }
+          return svw.StaggeredTile(
+            tileCornerRadius: tileCornerRadius,
+            pin: needPrefixWidget ? pins[index - 1] : pins[index],
+          );
+        },
+        staggeredTileBuilder: (int index) {
+          if (needPrefixWidget && index == 0) {
+            return const StaggeredTile.fit(4);
+          }
+          return const StaggeredTile.fit(2);
+        },
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
       ),
     );
   }
