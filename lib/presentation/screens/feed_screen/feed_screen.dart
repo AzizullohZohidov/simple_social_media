@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:simple_social_media/presentation/screens/widgets/images_grid.dart';
 import '../widgets/title_text.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -30,43 +30,12 @@ class FeedScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildImageGrid(),
+            ImagesGrid(
+              photoUrls: photoUrls,
+              tileCornerRadius: tileCornerRadius,
+            ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildImageGrid() {
-    return Expanded(
-      child: RefreshIndicator(
-        onRefresh: () {
-          return Future.value();
-        },
-        child: StaggeredGridView.countBuilder(
-          padding: const EdgeInsets.only(
-            top: 24,
-            left: 24,
-            right: 24,
-          ),
-          crossAxisCount: 4,
-          itemCount: photoUrls.length,
-          itemBuilder: (BuildContext context, int index) =>
-              _staggeredTile(photoUrls[index]),
-          staggeredTileBuilder: (int index) => const StaggeredTile.fit(2),
-          mainAxisSpacing: 12.0,
-          crossAxisSpacing: 12.0,
-        ),
-      ),
-    );
-  }
-
-  Widget _staggeredTile(String photoUrl) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(tileCornerRadius),
-      child: Image.network(
-        photoUrl,
-        fit: BoxFit.cover,
       ),
     );
   }

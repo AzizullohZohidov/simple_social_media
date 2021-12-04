@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_social_media/presentation/screens/widgets/images_grid.dart';
+import 'package:simple_social_media/presentation/screens/widgets/title_text.dart';
 import '../../../business_logic/bloc/profile_bloc/profile_bloc.dart';
 import '../widgets/avatar_picture.dart';
 
@@ -54,6 +56,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               _buildName(state),
                               _buildProfession(),
                               _buildEmail(state),
+                              const TitleText(
+                                text: 'My Posts',
+                                fontWeight: FontWeight.bold,
+                                textColor: Colors.deepOrange,
+                                textSize: 24,
+                              ),
+                              _buildMyImagesGrid(state),
                             ],
                           ),
                         ),
@@ -110,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return const Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Text(
-        'Photographer',
+        'Software Developer',
         style: TextStyle(
           fontSize: 16,
           color: Colors.white,
@@ -148,6 +157,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Text('Hey it seems you have not uploaded photos yet!'),
       );
     }
-    return const Text('Here grid should be returned');
+    return ImagesGrid(
+      photoUrls: state.currentUser.pinImageIds,
+      tileCornerRadius: 15,
+    );
   }
 }
