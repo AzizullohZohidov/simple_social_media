@@ -2,7 +2,7 @@
 This is a social media app where users can create their own profiles and upload posts which everyone can see.
 
 ## Briefly About Technologies Used
-This app is written using Flutter framework and Dart programming language. All data is stored in remote Firestore database and Firebase storage.
+This app is written using Flutter framework and Dart programming language. All data is stored in remote Firestore database and Firebase storage. 
 
 
 ## A Word about Existing Functionalities
