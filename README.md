@@ -42,4 +42,4 @@ Functionality to group posts into collections. Collections are like folders with
 ### Search Engine
 Integration of full text based search engines like Algolia.
 ### Fixes and Improvements
-Code refactoring and works on improvement of performance.
+Code refactoring and works on improvement of performance. 
