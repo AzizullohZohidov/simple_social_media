@@ -92,11 +92,15 @@ class _FeedScreenState extends State<FeedScreen> {
 
   Widget _buildBody(FeedState state) {
     if (state is FeedInitialization) {
+      if (state.allPins.isEmpty) {
+        return const Expanded(
+            child: Center(child: Text('No posts found. Be first to post!')));
+      }
       return Expanded(
         child:
             ImagesGrid(pins: state.allPins, tileCornerRadius: tileCornerRadius),
       );
     }
-    return const CircularProgressIndicator();
+    return const Expanded(child: Center(child: CircularProgressIndicator()));
   }
 }

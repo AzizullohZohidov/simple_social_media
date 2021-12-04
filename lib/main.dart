@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_social_media/business_logic/bloc/feed_bloc/feed_bloc.dart';
 import 'package:simple_social_media/business_logic/bloc/image_bloc/image_bloc.dart';
+import 'package:simple_social_media/business_logic/bloc/log_in_bloc/log_in_bloc.dart';
 import 'package:simple_social_media/data/repositories/image_repository.dart';
 import 'package:simple_social_media/data/repositories/pin_repository.dart';
 import 'business_logic/bloc/profile_bloc/profile_bloc.dart';
@@ -43,6 +44,10 @@ class MyApp extends StatelessWidget {
             BlocProvider<SignUpBloc>(
               create: (context) =>
                   SignUpBloc(authRepo: AuthenticationRepository()),
+            ),
+            BlocProvider<LogInBloc>(
+              create: (context) =>
+                  LogInBloc(authRepo: AuthenticationRepository()),
             ),
             BlocProvider<ProfileBloc>(
               create: (context) => ProfileBloc(

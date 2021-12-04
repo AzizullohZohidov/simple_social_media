@@ -13,13 +13,13 @@ class LogInBloc extends Bloc<LogInEvent, LogInState>
         EmailValidatorMixin,
         PasswordValidatorMixin,
         PassedParametersValidatorMixin {
-  LogInBloc(this._authRepo) : super(LogInInitial()) {
+  LogInBloc({required this.authRepo}) : super(LogInInitial()) {
     on<LogInEvent>((event, emit) {
       on<LogInSubmitted>(_onLogInSubmitted);
     });
   }
 
-  final AuthenticationRepository _authRepo;
+  final AuthenticationRepository authRepo;
 
   void _onLogInSubmitted(
     LogInSubmitted event,
@@ -42,7 +42,7 @@ class LogInBloc extends Bloc<LogInEvent, LogInState>
     }
     //Since no validation error occured we proceed to signing up the user
     try {
-      await _authRepo.logIn(
+      await authRepo.logIn(
         email: event.email,
         password: event.password,
       );
