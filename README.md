@@ -16,7 +16,7 @@ This application includes all basic functionalities of social media.
 -Users can view their profile by navigating to profile screen
 
 ## Sign Up Screen
-![Sign Up](https://user-images.githubusercontent.com/86743936/144718277-cb2edd10-4dc6-46b0-ba01-2f138876ee8d.jpg)
+![Sign Up](https://user-images.githubusercontent.com/86743936/144718807-5849e8f9-58fd-4e95-b74d-12d972b5a62f.jpg)
 
 ## Log In Screen
 ![Log In](https://user-images.githubusercontent.com/86743936/144718698-240f2f54-3080-4748-9d6b-320792ee55a9.jpg)
@@ -25,7 +25,7 @@ This application includes all basic functionalities of social media.
 ![Profile](https://user-images.githubusercontent.com/86743936/144718716-e1b40f81-e439-4ff1-81f5-f3af95c0095f.jpg)
 
 ## Add Post Screen
-![Add Post](https://user-images.githubusercontent.com/86743936/144718726-a6c4c95f-5ee2-4649-bdc0-ad9a072f25a2.jpg)
+![Add Post](https://user-images.githubusercontent.com/86743936/144718792-88371bb6-c468-4287-9e3b-c3c8985d2a9c.jpg)
 
 ## Feed Screen
 ![Feed Screen](https://user-images.githubusercontent.com/86743936/144718730-d5406d2a-8092-4ec1-afee-b8e6759d5d8b.jpg)
